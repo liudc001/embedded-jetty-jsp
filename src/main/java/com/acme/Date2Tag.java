@@ -28,26 +28,23 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-public class Date2Tag extends SimpleTagSupport
-{
-    String format;
+public class Date2Tag extends SimpleTagSupport {
+	String format;
 
-    public void setFormat(String value) {
-        this.format = value;
-    }
+	public void setFormat(String value) {
+		this.format = value;
+	}
 
-    public void doTag() throws JspException, IOException {
-        String formatted =
-            new SimpleDateFormat("long".equals(format)?"EEE 'the' d:MMM:yyyy":"d:MM:yy")
-            .format(new Date());
-        StringTokenizer tok = new StringTokenizer(formatted,":");
-        JspContext context = getJspContext();
-        context.setAttribute("day", tok.nextToken() );
-        context.setAttribute("month", tok.nextToken() );
-        context.setAttribute("year", tok.nextToken() );
+	public void doTag() throws JspException, IOException {
+		String formatted = new SimpleDateFormat("long".equals(format) ? "EEE 'the' d:MMM:yyyy" : "d:MM:yy")
+				.format(new Date());
+		StringTokenizer tok = new StringTokenizer(formatted, ":");
+		JspContext context = getJspContext();
+		context.setAttribute("day", tok.nextToken());
+		context.setAttribute("month", tok.nextToken());
+		context.setAttribute("year", tok.nextToken());
 
-        JspFragment fragment = getJspBody();
-        fragment.invoke(null);
-    }
+		JspFragment fragment = getJspBody();
+		fragment.invoke(null);
+	}
 }
-

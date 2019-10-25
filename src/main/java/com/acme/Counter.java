@@ -19,23 +19,20 @@
 package com.acme;
 
 @SuppressWarnings("serial")
-public class Counter implements java.io.Serializable
-{
-    int counter=0;
-    String last;
+public class Counter implements java.io.Serializable {
+	int counter = 0;
+	String last;
 
-    public int getCount()
-    {
-	counter++;
-	return counter;
-    }
+	public int getCount() {
+		counter++;
+		return counter;
+	}
 
-    public void setLast(String uri) {
-        last=uri;
-    }
+	public void setLast(String uri) {
+		last = uri;
+	}
 
-    public String getLast() {
-        return last;
-    }
+	public String getLast() {
+		return last;
+	}
 }
-
