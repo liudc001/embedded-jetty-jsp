@@ -53,6 +53,7 @@ import org.eclipse.jetty.webapp.Configuration;
  * 
  */
 public class Main {
+	
 	// Resource path pointing to where the WEBROOT is
 	private static final String WEBROOT_INDEX = "/webroot/";
 
@@ -67,6 +68,7 @@ public class Main {
 	 */
 	public static class JspStarter extends AbstractLifeCycle
 			implements ServletContextHandler.ServletContainerInitializerCaller {
+		
 		JettyJasperInitializer sci;
 		ServletContextHandler context;
 
@@ -108,6 +110,7 @@ public class Main {
 	}
 
 	public void start() throws Exception {
+		
 		server = new Server();
 
 		// Define ServerConnector
@@ -134,17 +137,21 @@ public class Main {
 
 		// Add Application Servlets
 		servletContextHandler.addServlet(DateServlet.class, "/date/");
+		
 		// Create Example of mapping jsp to path spec
 		ServletHolder holderAltMapping = new ServletHolder();
 		holderAltMapping.setName("foo.jsp");
 		holderAltMapping.setForcedPath("/test/foo/foo.jsp");
+		
 		servletContextHandler.addServlet(holderAltMapping, "/test/foo/");
 
 		// Default Servlet (always last, always named "default")
 		ServletHolder holderDefault = new ServletHolder("default", DefaultServlet.class);
 		holderDefault.setInitParameter("resourceBase", baseUri.toASCIIString());
 		holderDefault.setInitParameter("dirAllowed", "true");
+		
 		servletContextHandler.addServlet(holderDefault, "/");
+		
 		server.setHandler(servletContextHandler);
 
 		// Start Server
